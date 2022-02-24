@@ -31,7 +31,7 @@ public class MyPlayTests
 
         //Act
         field.CreateField(rawCount, columCount);
-        var elementsCount = field.Elements.Length;
+        var elementsCount = field.elements.Length;
         //Assert
         Assert.AreEqual(expected, elementsCount);
     }
@@ -42,7 +42,7 @@ public class MyPlayTests
         var field = _boardController;
         yield return null;
         //Assert
-        Assert.AreEqual(BoardController.rawCount * BoardController.columnCount, field.Elements.Length);
+        Assert.AreEqual(BoardController.rawCount * BoardController.columnCount, field.elements.Length);
     }
 
     [Test]
@@ -57,7 +57,7 @@ public class MyPlayTests
         {
             for (int y = 0; y < columCount; y++)
             {
-                Assert.IsNotEmpty(field.Elements[x, y].Key);
+                Assert.IsNotEmpty(field.elements[x, y].Key);
             }
         }
     }

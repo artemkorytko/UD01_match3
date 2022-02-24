@@ -6,9 +6,10 @@ namespace DefaultNamespace
 {
     public class Elements : MonoBehaviour
     {
+        public static float ScalingTime => scalingTime;
         [SerializeField] private Vector2 minScale = Vector2.one;
         [SerializeField] private Vector2 normalScale = Vector2.one;
-        [SerializeField] private float scalingTime = 1f;
+        private static float scalingTime = 1f;
 
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private GameObject _board;
@@ -27,24 +28,24 @@ namespace DefaultNamespace
         {
             SetConfig(config);
         }
-        
 
         public void Initialize(Element config, Vector2 gridPosition, Vector2 position)
         {
             SetConfig(config);
             SetLocalPosition(gridPosition, position);
             Enable();
+            SetSelected(false);
             IsInitialized = true;
         }
 
-        private void SetConfig(Element config)
+        public void SetConfig(Element config)
         {
             _config = config;
             Key = config.Key;
             _spriteRenderer.sprite = config.Sprite;
         }
 
-        private void SetLocalPosition(Vector2 gridPosition, Vector2 position)
+        public void SetLocalPosition(Vector2 gridPosition, Vector2 position)
         {
             GridPosition = gridPosition;
             transform.localPosition = position;
@@ -74,7 +75,7 @@ namespace DefaultNamespace
             }
         }
 
-        public void SelSelected(bool isOn)
+        public void SetSelected(bool isOn)
         {
             _board.SetActive(isOn);
         }
